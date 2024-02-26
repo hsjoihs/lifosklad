@@ -60,7 +60,7 @@ function createStageMenu()//ステージ選択メニュー
 	tmp+=
 	"<br><br><br><br><br><br>"+
 	"<span id='shownew' style='display:none'>"+
-	 "<a style='background-color:"+colorButton[0]+";' href='javascript:showNew()'>裏ステージで遊ぶ</a><br>"+
+	 "<div onclick='javascript:showNew()' class='bigbutton'>裏ステージで遊ぶ</div>"+
 	"</span>"+
 	"<a href='javascript:toTitle();'>タイトルに戻る</a><br>"+
 	"<a href='javascript:toTutor();'>説明に戻る</a><br>"+

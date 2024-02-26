@@ -32,4 +32,8 @@ animate:true,
 animate:true,
 animate:true,
 animate:true,
+animate:true,
+animate:true,
+animate:true,
+animate:true,
 animate:true

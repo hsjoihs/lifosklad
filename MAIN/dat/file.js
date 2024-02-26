@@ -92,15 +92,3 @@ function dir(noslash){
 		return ans+tmp.join("-")+(noslash?"":"/");
 	}
 }
-
-
-/*
-function dec(txt){
-	var tmp=txt.split("-");
-	var ans="";
-	for(var i=0,n=tmp.length;i<n;i++)
-	{
-		ans+=String.fromCharCode(parseInt(tmp[i],36));
-	}
-	return ans;
-}*/
