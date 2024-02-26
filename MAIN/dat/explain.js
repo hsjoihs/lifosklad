@@ -141,12 +141,12 @@ function do2()//②新規ユーザ登録してゲームを始めますか？
 			"",
 			"※ユーザ登録をすると、ゲームのプレイデータを保存でき、",
 			"<span style='color:white'>※</span>一度ゲームを閉じてもまた続きから遊べます。",
-			"※既にユーザ登録している方は、Noをクリックして下さい。",
+			"※既にユーザ登録している方は、「ゲストとしてログイン／登録済」をクリックして下さい。",
 			""
 			].join("<br>");
 		tm_p+='<br>';
-		tm_p+=['<input type="button" value="Yes"    onclick="hideTmp();do3()"/>',
-			   '<input type="button" value="No"     onclick="hideTmp();do4(null)"/>',
+		tm_p+=['<input type="button" value="新規ユーザ登録"    onclick="hideTmp();do3()"/>',
+			   '<input type="button" value="ゲストとしてログイン／登録済"     onclick="hideTmp();do4(null)"/>',
 			   '<input type="button" value="タイトルに戻る" onclick="hideTmp();toTitle()"/>'
 			].join("&nbsp;&nbsp;");
 		document.getElementById("tmp").innerHTML=tm_p;

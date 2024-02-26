@@ -49,14 +49,27 @@ function createStageMenu()//ステージ選択メニュー
 {
 	if(getUserName()==null){anonymousInit();}
 	var isBossCleared= stageCleared[stageRawData.length-1]>0;
+	var showList = isBossCleared ? "01" : "0";
+	showList = GLOBAL.alpha?"2"+showList:showList;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
 	var tmp='ステージを選択：<br>';
+	tmp+='<table><tr>';
+	var j=0;
 	for(var i=0;i<STAGE_NUM;i++)
 	{
-		if(!(isHidden[i]-0)||isBossCleared)tmp+='<a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
-		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
+		if(showList.indexOf(stageTagList[i],0)+1) // showList contains stageTag
+		{
+			tmp+='<td><a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
+			';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> </td>'
+			j++;
+		}
+		if(j%11==0)
+		{
+			tmp+='</tr><tr>'
+		}
 	}
+	tmp+='</tr></table>';
 	tmp+=
 	"<br><br><br><br><br><br>"+
 	"<span id='shownew' style='display:none'>"+
@@ -70,9 +83,15 @@ function createStageMenu()//ステージ選択メニュー
 	"<br>"+
 	"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:changeUser()'>Load...</a>&nbsp;"+
 	"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:pseudoSave()'>Save...</a><br>"+
-	"※既にユーザ登録していて、以前のデータで遊ぶ方はLoadをクリックして下さい。<br>";
+	"※既にユーザ登録していて、以前のデータで遊ぶ方はLoadをクリックして下さい。<br>"+
+	"<a style='color:white' href='javascript:alpha();showNew();'>_</a>";
 	mnu.innerHTML=tmp;
 
+}
+
+function alpha()
+{
+	GLOBAL.alpha=!GLOBAL.alpha;
 }
 
 function anonymousInit()
