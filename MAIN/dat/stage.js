@@ -102,9 +102,13 @@ function logIn()
 {
 	var $ = document.getElementById("login");
 	$.style.display="block";
-	$.innerHTML="ログイン/アカウント作成<br>"+"<form name='log_in'>ユーザー名: <input name='username'><br>"+
-	"<input type='button' value='OK' onclick='logIn2(false,document.log_in.username.value)'> "+
-	"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";toTitle();'></form><br><br>"+
+	$.innerHTML="ログイン/アカウント作成<br>"+
+	"<form name='log_in'>"+
+		"ユーザー名: <input name='username' onsubmit='return false;'><br>"+
+		"<input name='dummy' onsubmit='return false;' style='display:none;'>"+ // at least 2 textboxes must be present for `onsubmit' to take place
+		"<input type='button' value='OK' onclick='logIn2(false,document.log_in.username.value)'> "+
+		"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";toTitle();' />"+
+	"</form><br><br>"+
 	"次に来た時に同じ名前でログインすると続きから遊べるよ。";
 }
 
