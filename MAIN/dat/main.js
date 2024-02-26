@@ -9,6 +9,8 @@ var GLOBAL =
 {
 	userName:null,
 	animate:true,
+	from5:false, // is the user in routine #5?
+	skipExplain:false, // did the user read the explanation?
 	playid:function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40)//乱数でID。衝突が怖いので40桁。
 };
 

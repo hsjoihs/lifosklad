@@ -1,4 +1,4 @@
-﻿var reMake=false;
+﻿// var reMake=false;
 function explain(page)//ゲーム起動時の説明をする
 {
 	function samp(dd,redleft)
@@ -20,14 +20,14 @@ function explain(page)//ゲーム起動時の説明をする
 	<br><div style="text-align:center;align:center"><span class="koo" style="font-size:100px"\
 	onclick="alert(\'「リフォスクラッド」と読みます。\')">LIFOSKLAD</span></div>\
 	<div style="text-align:center;align:center;font-size:50px"><br><br><br>\
-	<span style="border:5px solid red;border-top:none;"><span class="koo" style="cursor:pointer" onclick="javascript:explain(-1)">遊ぶ</span></span>&nbsp;\
-	<span style="border:5px solid blue;border-top:none"><span class="koo" style="cursor:pointer" onclick="javascript:explain(1)">説明</span></span></div>\
+	<span style="border:5px solid red;border-top:none;"><span class="koo" style="cursor:pointer" onclick="javascript:do2()">遊ぶ</span></span>&nbsp;\
+	<span style="border:5px solid blue;border-top:none"><span class="koo" style="cursor:pointer" onclick="javascript:do7()">説明</span></span></div>\
 	',
 	'\
 	<h2>ゲームの説明</h2><span style="border:1px solid green"><img src="dat/disp.png"/></span><br>\
 	↑こんな感じの画面が出てくるから4種類の操作をして、\
 	<strong style="color:red">赤スタック</strong>に上から「<strong>STACK</strong>」と並べて、ステージをクリアしていくゲームだよ。<br>\
-	<font size=1><a href="javascript:explain(-1)">これ以降の説明を飛ばしてゲームを始める</a></font><br>\
+	<font size=1><a href="javascript:do2()">これ以降の説明を飛ばしてゲームを始める</a></font><br>\
 	','\
 	<h2>スタックと皿</h2>'+samp(',,',true)+'\
 	<h3>スタック</h3>\
@@ -81,33 +81,86 @@ function explain(page)//ゲーム起動時の説明をする
 	別のステージで遊びたい時に使ってね。<br>\
 	'];
 	var mnu=document.getElementById('menu');
+
 	if(dat[page])
 	{
-		mnu.innerHTML=dat[page].replace(/cookie/g,"チョコクッキー")+
-		(
-			dat[page+1]?"<br>":"<br>これで説明は終わりだよ。ルールは分かったかな?　<b>じゃあ、ゲームを始めよう!</b>　( ・∀・)ノ<br>"
-		)+
-		(
-			page?
-			(
-				"<a href='javascript:explain("+(page-1)+");'>前のページヘ</a> "+
-				"<a href='javascript:explain("+(page+1)+");'>"+(dat[page+1]?"次のページヘ":"ゲーム開始")+"</a>"
-			):""
-		);
+		var t_mp="";
+		
+		t_mp=dat[page].replace(/cookie/g,"チョコクッキー");
+		
+		if(dat[page+1])
+		{
+			t_mp+="<br>";
+		}
+		else //final explanation
+		{	
+			t_mp+="<br>これで説明は終わりだよ。ルールは分かったかな?　<b>じゃあ、ゲームを始めよう!</b>　( ・∀・)ノ<br>"
+		}
+		
+		if(page)
+		{
+			GLOBAL.skipExplain=true;
+			t_mp+="<a href='javascript:explain("+(page-1)+");'>前のページヘ</a> ";
+			if(dat[page+1])
+			{
+				t_mp+="<a href='javascript:explain("+(page+1)+");'>次のページヘ</a>"
+			}
+			else // final
+			{
+				if(GLOBAL.from5)
+				{
+					t_mp+="<a href='javascript:do6();'>ゲーム開始</a>"
+				}
+				else
+				{
+					t_mp+="<a href='javascript:do2();'>ゲーム開始</a><a href='javascript:toTitle();'>タイトルに戻る</a>"
+				}
+			}
+		}
+		mnu.innerHTML=t_mp;
+		
+	}
+	else // explain(-1); 
+	{
+		alert("ERROR");
+	}
+}
+
+function toTitle()//①タイトル
+{
+	// reMake=true;
+	explain(0);
+}
+function do2()//②新規ユーザ登録してゲームを始めますか？
+{
+	
+	if(confirm("新規ユーザ登録してゲームを始めますか？\n※ユーザ登録をすると、ゲームのプレイデータを保存でき、一度ゲームを閉じてもまた続きから遊べます。\n※既にユーザ登録している方は、Noをクリックして下さい。"))
+	{
+		do3();
 	}
 	else
 	{
-		mnu.innerHTML="";//説明を空にする
-		createStageMenu();//レベル選択画面
+		do4();
 	}
+	
 }
-function toTutor()
+
+function do5()//⑤説明
 {
-	reMake=true;
+	GLOBAL.from5=true;
 	explain(1);
 }
-function toTitle()
+
+
+function do7()//⑦タイトルから行ける用の説明
 {
-	reMake=true;
-	explain(0);
+	GLOBAL.from5=false;
+	explain(1);
+}
+
+
+function makStag()
+{
+	document.getElementById('menu').innerHTML="";//説明を空にする
+	createStageMenu();//レベル選択画面
 }

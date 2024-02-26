@@ -22,4 +22,4 @@ div.bigbutton
 {
 	width:150px;display:table-cell;text-align:center;vertical-align:middle;background-color:#7f7;margin:10px;
 	font-weight:bold;border:2px outset #f0f0f0;}
-div.bigbutton:active/*クリック中*/{border-style:inset;border-style:inset;}
+div.bigbutton:active/*クリック中*/{border-style:inset;}

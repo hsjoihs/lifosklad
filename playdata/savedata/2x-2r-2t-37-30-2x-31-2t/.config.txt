@@ -2,4 +2,6 @@ animate:false,
 animate:false,
 animate:false,
 animate:false,
+animate:false,
+animate:false,
 animate:false

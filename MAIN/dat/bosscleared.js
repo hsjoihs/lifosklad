@@ -8,5 +8,5 @@
 function showNew()
 {
 	document.getElementById("shownew").style.display="none";
-	explain(-1);
+	makStag();
 }
