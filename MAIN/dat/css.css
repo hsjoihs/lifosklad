@@ -1,0 +1,17 @@
+.menu{border:1px solid black;background-color:#fff;width:1000px;height:500px;position:absolute;z-Index:100;}
+.menubar{border:none;background-color:cyan;width:800px;height:10px;position:relative;z-Index:80;}
+.stac{border:5px solid black;border-top:none;width:110px;height:110px;position:absolute;}
+.waku{border:1px solid black;width:500px;height:200px;position:relative;}
+.st1/*左のスタック*/{left:50px;top:80px;}
+.st2/*右のスタック*/{left:200px;top:80px;}
+.dish{border:5px solid black;border-top:none;width:100px;height:20px;left:350px;top:165px;position:absolute;}
+.arrow{width:38px;height:40px;background-image:url("arrow.png");left:87px;top:35px;position:absolute;}
+.koo{border:1px solid #880015;background-color:#f4a460;text-align:center;color:#111111;}
+.expl{border:1px solid green;}
+div#rd{position:absolute;border-color:red;}
+div#bl{position:absolute;border-color:blue;}
+a.button{border:1px outset #f0f0f0;background-color:#f0f0f0;width:80px;height:24px;text-align:center;cursor:default;text-decoration:none;}
+a.button:link/*未訪問のリンク*/{color:black;text-decoration:none;}
+a.button:visited/*訪問後のリンク*/{color:black;text-decoration:none;}
+a.button:hover/*マウスをのせたとき*/{color:black;text-decoration:none;}
+a.button:active/*クリック中*/{border-style:inset;text-decoration:none;border-style:inset;}
