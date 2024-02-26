@@ -12,6 +12,12 @@ var GLOBAL =
 	animate:true
 };
 
+function applyConfig(json)
+{
+	var dat = JSON.parse("{"+json+"}");
+	if(dat)setAnimate(dat.animate);
+}
+
 function setUserName(val)
 {
 	GLOBAL.userName=val;
@@ -33,15 +39,17 @@ function animate()
 	GLOBAL.animate=true;
 	document.anim.on.disabled=true;
 	document.anim.off.disabled=false;
+	if(getUserName())appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",",\r\nanimate:true");
 }
 function noAnimate()
 {
 	GLOBAL.animate=false;
 	document.anim.off.disabled=true;
 	document.anim.on.disabled=false;
+	if(getUserName())appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",",\r\nanimate:false");
 }
 function getAnimate(){return GLOBAL.animate;}
-
+function setAnimate(t){if(t)animate();else noAnimate()}
 
 function init()//初期処理
 {

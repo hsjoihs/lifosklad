@@ -60,7 +60,12 @@ function saveFile(path,text){
 	}catch(e){return null;}
 }
 
-
+function appendFile(path,txt)
+{
+	var cont = openFile(path);
+	if(cont===null)return null;
+	return saveFile(path,cont+txt);
+}
 
 
 

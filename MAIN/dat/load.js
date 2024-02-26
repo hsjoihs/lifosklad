@@ -7,6 +7,13 @@
 	{
 		var pth=files[i].split("\\");
 		pth=pth[pth.length-1];
+		var contents=openFile(filepath+"savedata/"+esc(getUserName())+pth)
+		
+		if(pth==".config.txt")
+		{
+			applyConfig(contents);
+			continue;
+		}
 		var pthInfo=JSON.parse(readFileName(pth));
 		
 		var stage_num = pthInfo.stage-1;
@@ -19,7 +26,6 @@
 			return '{"rd":['+tmpp[0]+'],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']}'; 
 			/*'{"rd":["T","A","C","K"],"bl":[],"dish":["S"]}'というデータ構造*/
 		})(stage_num);
-		var contents=openFile(filepath+"savedata/"+esc(getUserName())+pth)
 		if(contents===null)return null;
 		var obj=JSON.parse(contents);
 		var id=obj["player-id"];

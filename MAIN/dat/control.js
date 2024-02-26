@@ -151,19 +151,32 @@ function cmd(v)//コマンド受け取る
 			writeDown(lastMove);
 			alert(lastMove.length+"手でミッションクリア!!　＼(・∀・)／");
 			var isBossCleared= stageCleared[stageRawData.length-1]>0;
+			//今までのユーザの記録の中から最高のを選ぶ
 			if(lastMove.length<stageRawData[currentStage].split(":")[1]-0)//短い
 			{
 				stageCleared[currentStage]=3;
-				label="!";
 			}
 			else if(stageCleared[currentStage]!=3&&lastMove.length==stageRawData[currentStage].split(":")[1]-0)//等しいかつ記録を超えていない
 			{
 				stageCleared[currentStage]=2;
-				label="=";
 			}
-			else if(stageCleared[currentStage]!=2)//フルクリアでなくてノルマ以上
+			else if(!(stageCleared[currentStage]>=2))//フルクリアでなくてノルマ以上
 			{
 				stageCleared[currentStage]=1;
+			}
+			
+			
+			//ラベルは今回のみのものなので別のif文
+			if(lastMove.length<stageRawData[currentStage].split(":")[1]-0)//短い
+			{
+				label="!";
+			}
+			else if(lastMove.length==stageRawData[currentStage].split(":")[1]-0)//等しいかつ記録を超えていない
+			{
+				label="=";
+			}
+			else//フルクリアでなくてノルマ以上
+			{
 				label="@";
 			}
 			var E;

@@ -136,6 +136,8 @@ function logIn2(warn,name)
 	if(!getDir(filepath+"savedata/"+esc(getUserName())))
 	{
 		document.getElementById("loading").style.display="none";
+		makeFolder(filepath+"savedata/"+esc(getUserName()));
+		saveFile(filepath+"savedata/"+esc(getUserName())+".config.txt","animate:true");
 		if(warn){alert("ロードするデータがありません");}
 		return;
 	}
