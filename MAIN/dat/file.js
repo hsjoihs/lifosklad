@@ -8,18 +8,10 @@
 	}else{return null;}
 }
 
-function saveFile(path,text){
-	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	var stream=fso.CreateTextFile(path);
-	stream.Write(text);
-	stream.Close();
-	return true;
-}
-
 function makeFolder(str)
 {
 	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	try{fso.CreateFolder(str);}catch(e){}
+	try{fso.CreateFolder(str);}catch(e){return null;}
 	return true;
 }
 
@@ -31,23 +23,54 @@ function deleteFile(str)
 		fso.DeleteFile(str);
 		return true;
 	}
-	catch(E){return false;}
+	catch(E){return null;}
 }
 
 function getDir(path)
 {
-	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	var fldr=fso.getFolder(path);
-	var files=new Enumerator(fldr.Files);
-	var stream;
-	var ans=[];
-	while(!files.atEnd())
+	try
 	{
-		ans[ans.length]=files.item()+"";
-		files.moveNext();
-	}
-	return ans;	
+		var fso=new ActiveXObject("Scripting.FileSystemObject");
+		var fldr=fso.getFolder(path);
+		var files=new Enumerator(fldr.Files);
+		var stream;
+		var ans=[];
+		while(!files.atEnd())
+		{
+			ans[ans.length]=files.item()+"";
+			files.moveNext();
+		}
+		return ans;	
+	}catch(e){return null}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function saveFile(path,text){
+	var fso=new ActiveXObject("Scripting.FileSystemObject");
+	var stream=fso.CreateTextFile(path);
+	stream.Write(text);
+	stream.Close();
+	return true;
+}
+
+
+
+
+
+
 
 
 

@@ -149,14 +149,17 @@ function cmd(v)//コマンド受け取る
 				label="@";
 			}
 			var E;
-			try
-			{
-				makeFolder(filepath+"savedata/"+esc(getUserName()));
-				saveFile(filepath+"savedata/"+esc(getUserName())+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
-				'{"player-id":"'+playerid+'","hand(s)":"'+lastMove.join("")+'"}');
+			
+			if(
+				makeFolder(filepath+"savedata/"+esc(getUserName())) &&
+				saveFile(
+				filepath+"savedata/"+esc(getUserName())+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
+				'{"player-id":"'+playerid+'","hand(s)":"'+lastMove.join("")+'"}')
+			)
+			{				
 				alert("保存しました。");
 			}
-			catch(E)
+			else
 			{
 				alert("保存出来ませんでした。");//エラーチェック
 			}

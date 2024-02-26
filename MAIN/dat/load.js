@@ -2,7 +2,7 @@
 {
 	document.getElementById("loading").style.display="block";
 	var files = getDir(filepath+"savedata/"+esc(getUserName()));
-	
+	if(files===null)return null;
 	for(var i=0,n=files.length;i<n;i++)
 	{
 		var pth=files[i].split("\\");
@@ -20,6 +20,7 @@
 			/*'{"rd":["T","A","C","K"],"bl":[],"dish":["S"]}'というデータ構造*/
 		})(stage_num);
 		var contents=openFile(filepath+"savedata/"+esc(getUserName())+pth)
+		if(contents===null)return null;
 		var obj=JSON.parse(contents);
 		var id=obj["player-id"];
 		var hands=obj["hand(s)"];
@@ -34,6 +35,7 @@
 	}
 	document.getElementById("loading").style.display="none";
 	createStageMenu();
+	return true;
 }
 
 function solves(hands,json)

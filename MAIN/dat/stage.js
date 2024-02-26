@@ -133,11 +133,7 @@ function logIn2(warn,name)
 {
 	setUserName(name);
 	document.getElementById("login").style.display="none";
-	try
-	{
-		getDir(filepath+"savedata/"+esc(getUserName()));
-	}
-	catch(E)
+	if(!getDir(filepath+"savedata/"+esc(getUserName())))
 	{
 		document.getElementById("loading").style.display="none";
 		if(warn){alert("ロードするデータがありません");}

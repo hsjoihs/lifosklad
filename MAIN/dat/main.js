@@ -49,10 +49,7 @@ function init()//初期処理
 	explain(0);
 	animate();
 	var E;
-	try{
 	saveFile(filepath+"playerdata/"+playerid+".txt",'{"started-playing-at":"'+timestamp(true)+'"}');
-	}
-	catch(E){}
 }
 
 function setStack(limit)//スタックをdatArrの通りにする
@@ -75,6 +72,9 @@ function setStack(limit)//スタックをdatArrの通りにする
 function termin()
 {
 	var datt=openFile(filepath+"playerdata/"+playerid+".txt");
-	var deleted=deleteFile(filepath+"playerdata/"+playerid+".txt")
-	if(datt!==null){saveFile(filepath+"playerdata/!"+playerid+".txt",datt.replace("}","")+',"finished-playing-at":"'+timestamp(true)+'"}')}
+	if(datt!==null)
+	{
+		deleteFile(filepath+"playerdata/"+playerid+".txt"); 
+		saveFile(filepath+"playerdata/!"+playerid+".txt",datt.replace("}","")+',"finished-playing-at":"'+timestamp(true)+'"}')
+	}
 }
