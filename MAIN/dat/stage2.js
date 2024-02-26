@@ -33,12 +33,13 @@ function createStageMenu()//ステージ選択メニュー
 	var isBossCleared= stageCleared[stageRawData.length-1]>0;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
-	var tmp='<input type="button" value="make" onclick="makeStageWith(prompt(),prompt(),prompt())" />ステージを選択：<br>';
-	for(var i=0;i<STAGE_NUM;i++)
-	{
-		if(!(isHidden[i]-0)||isBossCleared)tmp+='<a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
-		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
-	}
+	var tmp='<br>&nbsp;'+
+	'<form name="make">'+
+		'&nbsp;赤<input type="text" name="aka_" /><br>'+
+		'&nbsp;青<input type="text" name="ao_" /><br>'+
+		'&nbsp;皿<input type="text" name="sara_" /><br>'+
+		'<input type="button" value="make" onclick="makeStageWith(document.make.aka_.value,document.make.ao_.value,document.make.sara_.value)" /></form>';
+	
 
 	mnu.innerHTML=tmp;
 
@@ -75,7 +76,7 @@ function makeStageWith(a,b,c)
     }
   };
 }
-		a=JSON.stringify(a.split(""));alert(a);
+		a=JSON.stringify(a.split(""));
 		b=JSON.stringify(b.split(""));
 		c=JSON.stringify(c.split(""));
 		tmpp='({"rd":'+a+',"bl":'+b+',"dish":'+c+'})';
