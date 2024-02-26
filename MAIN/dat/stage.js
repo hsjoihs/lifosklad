@@ -112,6 +112,7 @@ function logIn2(name)
 {
 	userName = name;
 	document.getElementById("login").style.display="none";
+	try{load(true);load();}catch(E){alert(e);document.getElementById("loading").style.display="none";}
 }
 
 function logOut()

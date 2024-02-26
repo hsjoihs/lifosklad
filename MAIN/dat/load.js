@@ -1,4 +1,4 @@
-﻿function load()
+﻿function load(overwrite)
 {
 	document.getElementById("loading").style.display="block";
 	var files = getDir(filepath+"savedata/"+esc(userName));
@@ -23,7 +23,8 @@
 		var obj=JSON.parse(contents);
 		var id=obj["player-id"];
 		var hands=obj["hand(s)"];
-		var record_length = stageRawData[stage_num].split(":")[1]-0		
+		var record_length = stageRawData[stage_num].split(":")[1]-0	
+		if(overwrite){stageCleared=new Array(stageRawData.length);}
 		if(solves(hands,stage_JSON)=="STACK")
 		{
 			if(hands.length<record_length){stageCleared[stage_num] = 3}
