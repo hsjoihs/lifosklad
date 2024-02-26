@@ -9,7 +9,9 @@
 .koo{border:1px solid #880015;background-color:#f4a460;text-align:center;color:#111111;}
 .expl{border:1px solid green;}
 div#rd{position:absolute;border-color:red;}
+div#load_rd{position:absolute;border-color:red;}
 div#bl{position:absolute;border-color:blue;}
+div#load_bl{position:absolute;border-color:blue;}
 a.button{border:1px outset #f0f0f0;background-color:#f0f0f0;width:80px;height:24px;text-align:center;cursor:default;text-decoration:none;}
 a.button:link/*未訪問のリンク*/{color:black;text-decoration:none;}
 a.button:visited/*訪問後のリンク*/{color:black;text-decoration:none;}

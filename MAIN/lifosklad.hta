@@ -37,8 +37,14 @@ windowstate="normal">
 </hta:application>
 </meta>
 </head>
-<body bgcolor="white" oncontextmenu="return false;" onload="init();" onunload="termin();" ondblclick=""><table><tr><td style="width:10%">
-<span style="font-size:30px;" class="koo" onclick="alert('&copy;2013')">&nbsp;LIFOSKLAD&nbsp;</span></td><td style="width:*">&nbsp;</td><td style="width:1%"><span><strong style="background-color:#f00000;color:white;font-size:20px" onclick="if(confirm('閉じると遊んだ記録が消えてしまうが大丈夫か？'))window.close()">&nbsp;×&nbsp;</strong></span></td></tr></table>
+<body bgcolor="white" oncontextmenu="return false;" onload="init();" onunload="termin();" ondblclick="">
+<table>
+<tr>
+	<td style="width:10%"><span style="font-size:30px;" class="koo" onclick="alert('&copy;2013')">&nbsp;LIFOSKLAD&nbsp;</span></td>
+	<td style="width:*">&nbsp;</td>
+	<td style="width:1%"><span><strong style="background-color:#f00000;color:white;font-size:20px" onclick="if(confirm('閉じると遊んだ記録が消えてしまうが大丈夫か？'))window.close()">&nbsp;×&nbsp;</strong></span></td>
+</tr>
+</table>
 <div class="menu" id="menu"></div>
 <div class="menu" id="staffcredit" style="display:none">
 	<strong>プログラム：CHAtsFtD</strong><br>
@@ -52,7 +58,12 @@ windowstate="normal">
 	自称LIFOSKLAD廃人であるIceSlimeの記録を初見で抜き去った猛者。<br>本人は否定しているがどう見ても廃人である。<br><br>
 	<br><br><a href="javascript:creditClose();">スタッフクレジットを閉じる</a>
 </div>
-<div id="loadfile" class="menu" style="display:none">a</div>
+<div id="loadfile" class="menu" style="display:none"></div>
+<div id="loadedfile" class="menu" style="display:none">
+a
+</div>
+
+
 <a class="menubar" href="javascript:pauseMenu();">ステージ選択に戻る</a>
 <br><span id="currst"></span><br>
 <div class="waku">
