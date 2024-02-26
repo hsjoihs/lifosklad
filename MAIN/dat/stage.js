@@ -37,6 +37,7 @@ function creditClose()//スタッフクレジット
 }
 function createStageMenu()//ステージ選択メニュー
 {
+	if(userName==null){logIn();}
 	var isBossCleared= stageCleared[stageRawData.length-1]>0;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
@@ -47,7 +48,7 @@ function createStageMenu()//ステージ選択メニュー
 		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
 	}
 	tmp+="<br><br><br><br><br><br><a href='javascript:toTitle();'>タイトルに戻る</a><br><a href='javascript:toTutor();'>説明に戻る</a><br>"+
-	"<a href='javascript:credit();'>スタッフクレジット</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:load()'>Load...</a>&nbsp;<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:save()'>Save...</a>";
+	"<a href='javascript:credit();'>スタッフクレジット</a><br><a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:load()'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
 	mnu.innerHTML=tmp;
 
 }
@@ -96,4 +97,27 @@ function pauseMenu(noConf)//メニューに戻る　関数名がおかしいの�
 		currentStage=-1;
 	}
 }
+
+function logIn()
+{
+	var $ = document.getElementById("login");
+	$.style.display="block";
+	$.innerHTML="ログイン/アカウント作成<br>"+"<form name='log_in'>ユーザー名: <input name='username'><br>"+
+	"<input type='button' value='OK' onclick='logIn2(document.log_in.username.value)'> "+
+	"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";toTitle();'></form><br><br>"+
+	"次に来た時に同じ名前でログインすると続きから遊べるよ。";
+}
+
+function logIn2(name)
+{
+	userName = name;
+	document.getElementById("login").style.display="none";
+}
+
+function logOut()
+{
+	userName = null;
+	toTitle();
+}
+
 var stageCleared=new Array(stageRawData.length);//ステージ数と同じ数作る
