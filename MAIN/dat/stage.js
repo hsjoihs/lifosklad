@@ -47,7 +47,7 @@ function creditClose()//スタッフクレジット
 }
 function createStageMenu()//ステージ選択メニュー
 {
-	if(getUserName()==null){logIn();}
+	if(getUserName()==null){anonymousInit();}
 	var isBossCleared= stageCleared[stageRawData.length-1]>0;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
@@ -71,8 +71,14 @@ function createStageMenu()//ステージ選択メニュー
 
 }
 
+function anonymousInit()
+{
+	
+}
+
+
 function pseudoSave(){
-	if(appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",""))
+	if(appendFile(dir()+".config.txt",""))
 	{
 		alert("保存しました。");
 	}
@@ -127,10 +133,20 @@ function pauseMenu(noConf)//メニューに戻る　関数名がおかしいの�
 	}
 }
 
-function changeUser()//fixme
+function changeUser()//fixme:repetition
 {
-	logIn(); // FIXME: toTitle and "アカウント作成" must be deleted
+	var $ = document.getElementById("login");
+	$.style.display="block";
+	$.innerHTML="ログイン<br>"+
+	"<form name='log_in'>"+
+		"ユーザー名: <input name='username' onsubmit='return false;'><br>"+
+		"<input name='dummy' onsubmit='return false;' style='display:none;'>"+ // at least 2 textboxes must be present for `onsubmit' to take place
+		"<input type='button' value='OK' onclick='logIn2(false,document.log_in.username.value)'> "+
+		"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";' />"+
+	"</form>";
 }
+
+
 
 function logIn()
 {
@@ -150,12 +166,12 @@ function logIn2(warn,name)
 {
 	setUserName(name);
 	document.getElementById("login").style.display="none";
-	if(!getDir(filepath+"savedata/"+esc(getUserName())))
+	if(!getDir(dir()))
 	{
+		if(warn){alert("ロードするデータがありません");return;}
 		document.getElementById("loading").style.display="none";
-		makeFolder(filepath+"savedata/"+esc(getUserName()));
-		saveFile(filepath+"savedata/"+esc(getUserName())+".config.txt","animate:true");
-		if(warn){alert("ロードするデータがありません");}
+		makeFolder(dir());
+		saveFile(dir()+".config.txt","animate:true");
 		return;
 	}
 	load(true);load();

@@ -64,7 +64,7 @@ function explain(page)//ゲーム起動時の説明をする
 	'+samp('TACK,,S',true)+'<img src="dat/arrow2.png"/>'+samp('ACK,T,S',true)+'\
 	','\
 	<h2>作者記録</h2>\
-	このゲームの作者のCHAtsFtDがこのステージを何手でクリア出来たかが書いてあるよ。<font size=1>(大体IceSlimeとかLitverigとかが出した記録なんだけど)</font><br>\
+	このゲームの作者のCHAtsFtDがこのステージを何手でクリア出来たかが書いてあるよ。<font size=1>(大体IceslimeとかLitverigとかが出した記録なんだけど)</font><br>\
 	作者より手数が多ければ<span style="background-color:#7fffd4;border:1px outset #f0f0f0;">アクアマリン</span>で、<br>\
 	作者と手数が同じなら<span style="background-color:#ffd700;border:1px outset #f0f0f0;">金色</span>で、<br>\
 	作者より手数が少なければ<span style="background-color:#ff00ff;border:1px outset #f0f0f0;">マゼンダ</span>で<br>\

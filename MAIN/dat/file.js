@@ -45,8 +45,6 @@ function getDir(path)
 }
 
 
-
-
 function saveFile(path,text){
 	try
 	{
@@ -66,23 +64,26 @@ function appendFile(path,txt)
 }
 
 
-
-
-
-
-
-
-
-function esc(txt){
-	txt=txt.toLowerCase();
-	var tmp=[];
-	for(var i=0,n=txt.length;i<n;i++)
+function dir(){
+	var ans = filepath+"savedata/";
+	if(getUserName()==null) // anonymous
 	{
-		tmp[tmp.length]=txt.charCodeAt(i).toString(36)
+		return ans+getPlayId()+"/";
 	}
-	return tmp.join("-")+"/"
+	else
+	{
+		var txt = getUserName().toLowerCase();
+		var tmp=[];
+		for(var i=0,n=txt.length;i<n;i++)
+		{
+			tmp[tmp.length]=txt.charCodeAt(i).toString(36);
+		}
+		return ans+tmp.join("-")+"/";
+	}
 }
 
+
+/*
 function dec(txt){
 	var tmp=txt.split("-");
 	var ans="";
@@ -91,4 +92,4 @@ function dec(txt){
 		ans+=String.fromCharCode(parseInt(tmp[i],36));
 	}
 	return ans;
-}
+}*/

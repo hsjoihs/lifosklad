@@ -39,14 +39,14 @@ function animate()
 	GLOBAL.animate=true;
 	document.anim.on.disabled=true;
 	document.anim.off.disabled=false;
-	if(getUserName())appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",",\r\nanimate:true");
+	if(getUserName())appendFile(dir()+".config.txt",",\r\nanimate:true");
 }
 function noAnimate()
 {
 	GLOBAL.animate=false;
 	document.anim.off.disabled=true;
 	document.anim.on.disabled=false;
-	if(getUserName())appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",",\r\nanimate:false");
+	if(getUserName())appendFile(dir()+".config.txt",",\r\nanimate:false");
 }
 function getAnimate(){return GLOBAL.animate;}
 function setAnimate(t){if(t)animate();else noAnimate()}

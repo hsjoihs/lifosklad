@@ -1,13 +1,13 @@
 ﻿function load(overwrite)
 {
 	document.getElementById("loading").style.display="block";
-	var files = getDir(filepath+"savedata/"+esc(getUserName()));
+	var files = getDir(dir());
 	if(files===null)return null;
 	for(var i=0,n=files.length;i<n;i++)
 	{
 		var pth=files[i].split("\\");
 		pth=pth[pth.length-1];
-		var contents=openFile(filepath+"savedata/"+esc(getUserName())+pth)
+		var contents=openFile(dir()+pth)
 		
 		if(pth==".config.txt")
 		{

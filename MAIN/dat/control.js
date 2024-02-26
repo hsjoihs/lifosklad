@@ -182,9 +182,9 @@ function cmd(v)//コマンド受け取る
 			var E;
 			
 			if(
-				makeFolder(filepath+"savedata/"+esc(getUserName())) &&
+				makeFolder(dir()) &&
 				saveFile(
-				filepath+"savedata/"+esc(getUserName())+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
+				dir()+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
 				'{"player-id":"'+getPlayId()+'","hand(s)":"'+lastMove.join("")+'"}')
 			)
 			{				
