@@ -52,25 +52,21 @@ function createStageMenu()//ステージ選択メニュー
 }
 function createStage(n)
 {
-	function makeStage(stDat)
-	{
-		datArr=eval(stDat);//書き換える
-		document.getElementById("rd").style.left=50+"px";//DOMを作っておかないと怒られる
-		document.getElementById("bl").style.left=200+"px";
-		document.inp.und.disabled=true;
-		red_is_left=true;
-		lastMove=[];//リセットし忘れた
-		writeDown(lastMove);//リセットし忘れた
-		popKeeper=[];//リセットし忘れた
-		setStack();
-	}
 	if(n in stageOriginalData)//元データが空ではない
 	{
 		if(!(n in stageNowData))stageNowData[n]=stageOriginalData[n];
 		var tmpp=stageNowData[n].split("@");//データ構造は固定なのでまとめる
-		tmpp='({"rd":['+tmpp[0]+'],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']})';
+		tmpp='{"rd":['+tmpp[0]+'],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']}';
 		/*'{"rd":["T","A","C","K"],"bl":[],"dish":["S"]}'というデータ構造*/
-		makeStage(tmpp);//ステージ作る
+			datArr=JSON.parse(tmpp);//書き換える
+			document.getElementById("rd").style.left=50+"px";//DOMを作っておかないと怒られる
+			document.getElementById("bl").style.left=200+"px";
+			document.inp.und.disabled=true;
+			red_is_left=true;
+			lastMove=[];//リセットし忘れた
+			writeDown(lastMove);//リセットし忘れた
+			popKeeper=[];//リセットし忘れた
+			setStack();
 		document.getElementById('menu').style.display="none";
 		currentStage=n;
 		document.getElementById("currst").innerHTML=stageNum(n)+"：作者記録"+stageRawData[n].split(":")[1];
