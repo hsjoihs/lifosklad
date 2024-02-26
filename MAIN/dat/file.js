@@ -11,7 +11,9 @@
 function makeFolder(str)
 {
 	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	try{fso.CreateFolder(str);}catch(e){return null;}
+	try{fso.CreateFolder(str);}catch(e)
+	{//already made
+	}
 	return true;
 }
 
@@ -47,23 +49,15 @@ function getDir(path)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function saveFile(path,text){
-	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	var stream=fso.CreateTextFile(path);
-	stream.Write(text);
-	stream.Close();
-	return true;
+	try
+	{
+		var fso=new ActiveXObject("Scripting.FileSystemObject");
+		var stream=fso.CreateTextFile(path);
+		stream.Write(text);
+		stream.Close();
+		return true;
+	}catch(e){return null;}
 }
 
 
