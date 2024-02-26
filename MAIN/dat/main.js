@@ -28,8 +28,18 @@ function setUserName(val)
 	}
 }
 function getUserName(){return GLOBAL.userName;}
-function animate(){GLOBAL.animate=true;}
-function noAnimate(){GLOBAL.animate=false;}
+function animate()
+{
+	GLOBAL.animate=true;
+	document.anim.on.disabled=true;
+	document.anim.off.disabled=false;
+}
+function noAnimate()
+{
+	GLOBAL.animate=false;
+	document.anim.off.disabled=true;
+	document.anim.on.disabled=false;
+}
 function getAnimate(){return GLOBAL.animate;}
 
 
@@ -37,6 +47,7 @@ function init()//初期処理
 {
 	resizeTo(1024,570);
 	explain(0);
+	animate();
 	var E;
 	try{
 	saveFile(filepath+"playerdata/"+playerid+".txt",'{"started-playing-at":"'+timestamp(true)+'"}');
