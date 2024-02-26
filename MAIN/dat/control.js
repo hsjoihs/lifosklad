@@ -195,7 +195,7 @@ function cmd(v)//コマンド受け取る
 				alert("保存出来ませんでした。");//エラーチェック
 			}
 			
-			if(currentStage==(stageRawData.length-1)&&!isBossCleared)//ボスをクリアしたら
+			if(currentStage==37&&!isBossCleared)//ボスをクリアしたら
 			{
 				bossCleared();
 			}
