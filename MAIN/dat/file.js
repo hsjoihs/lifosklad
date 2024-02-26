@@ -54,6 +54,7 @@ function getDir(path)
 
 
 function esc(txt){
+	txt=txt.toLowerCase();
 	var tmp=[];
 	for(var i=0,n=txt.length;i<n;i++)
 	{

@@ -38,7 +38,7 @@ function creditClose()//スタッフクレジット
 }
 function createStageMenu()//ステージ選択メニュー
 {
-	if(userName==null){logIn();}
+	if(getUserName()==null){logIn();}
 	var isBossCleared= stageCleared[stageRawData.length-1]>0;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
@@ -49,7 +49,7 @@ function createStageMenu()//ステージ選択メニュー
 		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
 	}
 	tmp+="<br><br><br><br><br><br><a href='javascript:toTitle();'>タイトルに戻る</a><br><a href='javascript:toTutor();'>説明に戻る</a><br>"+
-	"<a href='javascript:credit();'>スタッフクレジット</a><br><a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:logIn2(true,userName)'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
+	"<a href='javascript:credit();'>スタッフクレジット</a><br><a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:logIn2(true,getUserName())'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
 	mnu.innerHTML=tmp;
 
 }
@@ -115,11 +115,11 @@ function logIn()
 
 function logIn2(warn,name)
 {
-	userName = name;
+	setUserName(name);
 	document.getElementById("login").style.display="none";
 	try
 	{
-		getDir(filepath+"savedata/"+esc(userName));
+		getDir(filepath+"savedata/"+esc(getUserName()));
 	}
 	catch(E)
 	{
@@ -132,7 +132,7 @@ function logIn2(warn,name)
 
 function logOut()
 {
-	userName = null;
+	setUserName(null);
 	stageCleared=new Array(stageRawData.length);
 	toTitle();
 }
