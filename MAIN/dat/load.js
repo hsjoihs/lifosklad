@@ -28,7 +28,7 @@
 		{
 			if(hands.length<record_length){stageCleared[stage_num] = 3}
 			else if(hands.length==record_length && stageCleared[stage_num] != 3){stageCleared[stage_num] = 2}
-			else if(stageCleared[stage_num] <= 1){stageCleared[stage_num] = 1}
+			else if(stageCleared[stage_num] != 3 && stageCleared[stage_num] != 2){stageCleared[stage_num] = 1}
 		}
 	}
 	document.getElementById("loading").style.display="none";
