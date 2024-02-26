@@ -58,24 +58,7 @@ function createStageMenu()//ステージ選択メニュー
 	}
 function makeStageWith(a,b,c)
 {
-	if (!window.JSON) {
-  window.JSON = {
-    parse: function (sJSON) { return eval("(" + sJSON + ")"); },
-    stringify: function (vContent) {
-      if (vContent instanceof Object) {
-        var sOutput = "";
-        if (vContent.constructor === Array) {
-          for (var nId = 0; nId < vContent.length; sOutput += this.stringify(vContent[nId]) + ",", nId++);
-          return "[" + sOutput.substr(0, sOutput.length - 1) + "]";
-        }
-        if (vContent.toString !== Object.prototype.toString) { return "\"" + vContent.toString().replace(/"/g, "\\$&") + "\""; }
-        for (var sProp in vContent) { sOutput += "\"" + sProp.replace(/"/g, "\\$&") + "\":" + this.stringify(vContent[sProp]) + ","; }
-        return "{" + sOutput.substr(0, sOutput.length - 1) + "}";
-      }
-      return typeof vContent === "string" ? "\"" + vContent.replace(/"/g, "\\$&") + "\"" : String(vContent);
-    }
-  };
-}
+
 		a=JSON.stringify(a.split(""));
 		b=JSON.stringify(b.split(""));
 		c=JSON.stringify(c.split(""));

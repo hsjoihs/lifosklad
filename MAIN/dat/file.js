@@ -33,3 +33,18 @@ function deleteFile(str)
 	}
 	catch(E){return false;}
 }
+
+function getDir(path)
+{
+	var fso=new ActiveXObject("Scripting.FileSystemObject");
+	var fldr=fso.getFolder(path);
+	var files=new Enumerator(fldr.Files);
+	var stream;
+	var ans=[];
+	while(!files.atEnd())
+	{
+		ans[ans.length]=files.item()+"";
+		files.moveNext();
+	}
+	return ans;	
+}

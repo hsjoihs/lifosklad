@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>filemanage</title>
+<script type="text/javascript">
+<!--
+function showDir(path)
+{
+	var fso=new ActiveXObject("Scripting.FileSystemObject");
+	var fldr=fso.getFolder(path);
+	var files=new Enumerator(fldr.Files);
+	var fldrs=new Enumerator(fldr.SubFolders);
+	var stream;
+	var ans="<strong>"+path+"</strong><br><table border=1><tr><th>filename</th></tr>";
+	while(!files.atEnd())
+	{
+		ans+="<tr><td>"+files.item()+"</td></tr>";
+		files.moveNext();
+	}
+	ans+="<tr><th>foldername</th></tr>";
+	while(!fldrs.atEnd())
+	{
+		ans+="<tr><td>"+fldrs.item()+"</td></tr>";
+		fldrs.moveNext();
+	}
+	ans+="</table>";
+	document.getElementById("showText").innerHTML=ans;
+	
+}
+//-->
+</script>
+</head>
+<body>
+<div id="showText"></div>
+<form name="form1">
+	<input type="text" name="path" size="60">
+	<input type="button" value="showDir" onclick="showDir(document.form1.path.value)">
+	</form>
+</body>
+</html>
