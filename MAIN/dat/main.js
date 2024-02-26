@@ -51,9 +51,11 @@ function noAnimate()
 function getAnimate(){return GLOBAL.animate;}
 function setAnimate(t){if(t)animate();else noAnimate()}
 function getPlayId(){return GLOBAL.playid}
+
+
 function init()//初期処理
 {
-	resizeTo(1024,570);
+	resizeTo(1040,605);
 	explain(0);
 	animate();
 	var E;
