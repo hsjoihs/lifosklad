@@ -1,5 +1,5 @@
 ﻿var colorButton={0:"#f0f0f0","undefined":"#f0f0f0",1:"#7fffd4",2:"#ffd700",3:"#ff00ff"};
-
+var TIME_ = 250;
 function unlock(t){var $=document.inp;$.pop.disabled=$.pus.disabled=$.lgt.disabled=$.mov.disabled=$.und.disabled=$.rel.disabled=t}
 function writeDown(dtt)
 {
@@ -33,8 +33,8 @@ function cmd(v)//コマンド受け取る
 					'</div>';
 					datArr.dish[0]=datArr[pointed()].shift();
 					setStack(pointed());
-					$("#mino").animate({top:'45px'},500).animate({left:'+=300px'},500).animate({top:'165px'},500);
-					setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(0);},1600);		
+					$("#mino").animate({top:'45px'},TIME_).animate({left:'+=300px'},TIME_).animate({top:'165px'},TIME_);
+					setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(0);},TIME_*3.2);		
 				}
 				else
 				{
@@ -65,8 +65,8 @@ function cmd(v)//コマンド受け取る
 				datArr[pointed()].unshift(datArr.dish[0]);//皿から貰う
 				setStack("dish");
 				
-				$("#mino").animate({top:'45px'},500).animate({left:'-=300px'},500).animate({top:'65px'},250);
-				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(1);},1350);		
+				$("#mino").animate({top:'45px'},TIME_).animate({left:'-=300px'},TIME_).animate({top:'65px'},TIME_/2);
+				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(1);},TIME_*2.7);		
 			}
 			else
 			{
@@ -92,8 +92,8 @@ function cmd(v)//コマンド受け取る
 				datArr[red_is_left?"bl":"rd"].unshift(datArr[pointed()].shift());//一つ動かす
 				setStack(pointed());
 				
-				$("#mino").animate({top:'45px'},500).animate({left:'+=150px'},500).animate({top:'65px'},500);
-				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(3);},1350);	
+				$("#mino").animate({top:'45px'},TIME_).animate({left:'+=150px'},TIME_).animate({top:'65px'},TIME_);
+				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(3);},TIME_*3.2);	
 			}
 			else
 			{
@@ -110,13 +110,31 @@ function cmd(v)//コマンド受け取る
 		var blu=parseInt(document.getElementById("bl").style.left,10);
 		var Tim1;
 		unlock(true);//副作用防止のために封じておく
-		var dif=red_is_left?15:-15;//変化量
-		Tim1=setInterval(function()
+		if(getAnimate())
 		{
-			red+=dif;document.getElementById("rd").style.left=red+"px";
-			blu-=dif;document.getElementById("bl").style.left=blu+"px";
-			if(red>=200||blu>=200){unlock(false);clearTimeout(Tim1);}
-		},35);
+			var dif=red_is_left?15:-15;//変化量
+			Tim1=setInterval(function()
+			{
+				red+=dif;document.getElementById("rd").style.left=red+"px";
+				blu-=dif;document.getElementById("bl").style.left=blu+"px";
+				if(red>=200||blu>=200){unlock(false);clearTimeout(Tim1);}
+			},35);
+		}
+		else
+		{
+			if(red_is_left)
+			{
+				document.getElementById("rd").style.left="200px";
+				document.getElementById("bl").style.left= "50px";
+			}
+			else
+			{
+				document.getElementById("rd").style.left= "50px";
+				document.getElementById("bl").style.left="200px";
+			}
+			unlock(false);
+		}
+			
 		red_is_left=!red_is_left;
 	}
 	function jigo(mvnm)//移動処理後の事後処理（Undoなどの管理のため）
