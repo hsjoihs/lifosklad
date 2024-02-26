@@ -150,7 +150,7 @@ function cmd(v)//コマンド受け取る
 		{
 			writeDown(lastMove);
 			alert(lastMove.length+"手でミッションクリア!!　＼(・∀・)／");
-			var isBossCleared= stageCleared[stageRawData.length-1]>0;
+			var isBossCleared= stageCleared[37]>0; //開祖国T
 			//今までのユーザの記録の中から最高のを選ぶ
 			if(lastMove.length<stageRawData[currentStage].split(":")[1]-0)//短い
 			{

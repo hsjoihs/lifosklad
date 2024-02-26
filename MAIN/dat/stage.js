@@ -48,30 +48,50 @@ function creditClose()//スタッフクレジット
 function createStageMenu()//ステージ選択メニュー
 {
 	if(getUserName()==null){anonymousInit();}
-	var isBossCleared= stageCleared[stageRawData.length-1]>0;
+	var isBossCleared= stageCleared[37]>0;
 	var showList = isBossCleared ? "01" : "0";
 	showList = GLOBAL.alpha?"2"+showList:showList;
 	var mnu=document.getElementById('menu');//メニューのDOM
 	var STAGE_NUM=stageOriginalData.length-1;
 	var tmp='ステージを選択：<br>';
 	tmp+='<table><tr>';
-	var j=0;
-	for(var i=0;i<STAGE_NUM;i++)
+	
+	var tlist=[];
+	for(var i=0,j=0;i<STAGE_NUM;i++)
 	{
-		if(showList.indexOf(stageTagList[i],0)+1) // showList contains stageTag
+		if(showList.indexOf(stageTagList[i],0)+1) // if(showList contains stageTag)
 		{
-			tmp+='<td><a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
-			';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> </td>'
-			j++;
+			if(stageTagList[i]=='0'||stageTagList[i]=='1')
+			{
+				tmp+='<td><a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
+				';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> </td>'
+				j++;
+			}
+			else
+			{
+				tlist[tlist.length]=i
+			}
 		}
 		if(j%11==0)
 		{
 			tmp+='</tr><tr>'
 		}
 	}
-	tmp+='</tr></table>';
+	tmp+='</tr></table><br>';
+	tmp+='<table><tr>';
+	for(var k=0,j=0;k<tlist.length;k++)
+	{
+		tmp+='<td><a id="sta'+tlist[k]+'" class="button" style="background-color:'+colorButton[stageCleared[tlist[k]]+""]+
+				';" href="javascript:createStage('+tlist[k]+')">'+stageNum(tlist[k])+'</a> </td>'
+				j++;
+		if(j%11==0)
+		{
+			tmp+='</tr><tr>'
+		}
+	}
+	tmp+='</tr></table><br>';
 	tmp+=
-	"<br><br><br><br><br><br>"+
+	"<br><br><br>"+
 	"<span id='shownew' style='display:none'>"+
 	 "<div onclick='javascript:showNew()' class='bigbutton'>裏ステージで遊ぶ</div>"+
 	"</span>"+
