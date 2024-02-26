@@ -10,7 +10,7 @@
 		var pthInfo=JSON.parse(readFileName(pth));
 		
 		var stage_num = pthInfo.stage-1;
-		
+		if(isNaN(stage_num))continue; // ignore corrupt data
 		var stage_name = stageNum(stage_num);
 		
 		var stage_JSON = (function(n)

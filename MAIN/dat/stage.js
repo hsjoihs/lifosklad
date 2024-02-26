@@ -21,6 +21,7 @@
 })();
 function stageNum(dat)
 {
+	if(stageRawData[dat] == null)return"undefined"
 	if(stageRawData[dat].split(":")[2])
 	{
 		return stageRawData[dat].split(":")[2]
@@ -116,7 +117,17 @@ function logIn2(warn,name)
 {
 	userName = name;
 	document.getElementById("login").style.display="none";
-	try{load(true);load();}catch(E){document.getElementById("loading").style.display="none";if(warn)alert("ロードするデータがありません")}
+	try
+	{
+		getDir(filepath+"savedata/"+esc(userName));
+	}
+	catch(E)
+	{
+		document.getElementById("loading").style.display="none";
+		if(warn){alert("ロードするデータがありません");}
+		return;
+	}
+	load(true);load();
 }
 
 function logOut()
