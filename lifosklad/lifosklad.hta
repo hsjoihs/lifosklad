@@ -46,7 +46,7 @@ windowstate="normal" />
 				&nbsp;LIFOSKLAD&nbsp;</span>
 		</td>
 		<td style="width:*">
-			&nbsp;
+			<span style="color:red">赤の凵</span>に上から<strong>STACK</strong>と積もう
 		</td>
 		<td style="width:15%;text-align:right;">
 			<span id="username" style="display:none;height:25px;">ユーザー名:</span>
@@ -87,8 +87,9 @@ windowstate="normal" />
 <div id="login"   class="menu" style="display:none"></div>
 <div id="config"  class="menu" style="display:none">
 	<form name="anim">
-		クッキーを移動するときのアニメーション<input type="button" value="ON" name="on" onclick="animate()"/> <input type="button" value="OFF" name="off" onclick="noAnimate()"/> 
-		<br><br><a href="javascript:configClose();">設定を閉じる</a>
+		クッキーを移動するときのアニメーション<input type="button" value="ON" name="on" onclick="animate()"/> <input type="button" value="OFF" name="off" onclick="noAnimate()"/><br>
+		緑の矢印<input type="button" value="ON" name="on2" onclick="arrow()"/> <input type="button" value="OFF" name="off2" onclick="noArrow()"/> 
+		<br><br><a href="javascript:configClose();">設定画面を閉じる</a>
 	</form>
 </div>
 
@@ -99,12 +100,17 @@ windowstate="normal" />
 	<div class="stac st2" id="bl"></div>
 	<div class="dish" id="dish"></div>
 	<div class="arrow"></div>
+	<div class="arr" id="arr1"><img src="dat/pop.png" /></div>
+	<div class="arr" id="arr2"><img src="dat/push.png" /></div>
+	<div class="arr" id="arr3"><img src="dat/lgt.png" /></div>
+	<div class="arr" id="arr4"><img src="dat/mov.png" /></div>
 </div>
+
 <form name="inp">
-	<input type="button" name="pop" onclick="cmd(0)" value="皿へ移動"/>
-	<input type="button" name="pus" onclick="cmd(1)" value="皿からコピー"/>
-	<input type="button" name="lgt" onclick="cmd(2)" value="スタックを入れ替える"/>
-	<input type="button" name="mov" onclick="cmd(3)" value="もう一つのスタックに移動"/>
+	<input type="button" name="pop" onclick="cmd(0)" onmouseover="showarr(1)" onmouseout="hidearr(1)" value="皿へ移動"/>
+	<input type="button" name="pus" onclick="cmd(1)" onmouseover="showarr(2)" onmouseout="hidearr(2)" value="皿からコピー"/>
+	<input type="button" name="lgt" onclick="cmd(2)" onmouseover="showarr(3)" onmouseout="hidearr(3)" value="スタックを入れ替える"/>
+	<input type="button" name="mov" onclick="cmd(3)" onmouseover="showarr(4)" onmouseout="hidearr(4)" value="もう一つのスタックに移動"/>
 	<input type="button" name="und" onclick="cmd(4)" value="一手戻す"/><br><br>
 	<input type="button" name="rel" onclick="restart()" value="ステージをやり直す"/>
 </form>

@@ -11,6 +11,7 @@ var GLOBAL =
 	animate:true,
 	from5:false, // is the user in routine #5?
 	skipExplain:false, // did the user read the explanation?
+	arrow:true,
 	playid:function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40)//乱数でID。衝突が怖いので40桁。
 };
 
@@ -50,6 +51,21 @@ function noAnimate()
 	document.anim.on.disabled=false;
 	if(getUserName())appendFile(dir()+".config.txt",",\r\nanimate:false");
 }
+
+function arrow()
+{
+	GLOBAL.arrow=true;
+	document.anim.on2.disabled=true;
+	document.anim.off2.disabled=false;	
+}
+
+function noArrow()
+{
+	GLOBAL.arrow=false;
+	document.anim.on2.disabled=false;
+	document.anim.off2.disabled=true;	
+}
+
 function getAnimate(){return GLOBAL.animate;}
 function setAnimate(t){if(t)animate();else noAnimate()}
 function getPlayId(){return GLOBAL.playid}
@@ -60,6 +76,7 @@ function init()//初期処理
 	resizeTo(1040,605);
 	explain(0);
 	animate();
+	arrow();
 	var E;
 	saveFile(filepath+"playerdata/"+getPlayId()+".txt",'{"started-playing-at":"'+timestamp(true)+'"}');
 }
@@ -90,3 +107,6 @@ function termin()
 		saveFile(filepath+"playerdata/!"+getPlayId()+".txt",datt.replace("}","")+',"finished-playing-at":"'+timestamp(true)+'"}')
 	}
 }
+
+function showarr(n){if(GLOBAL.arrow)document.getElementById("arr"+n).style.display="block";}
+function hidearr(n){document.getElementById("arr"+n).style.display="none";}

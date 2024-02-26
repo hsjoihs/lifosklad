@@ -148,7 +148,7 @@ function do2()//②新規ユーザ登録してゲームを始めますか？
 		tm_p+=['<input type="button" value="新規ユーザ登録"    onclick="hideTmp();do3()"/>',
 			   '<input type="button" value="ゲストとしてログイン"  onclick="hideTmp();do4(null)"/>',
 			   '<input type="button" value="登録済"     onclick="hideTmp();setUserName(null);changeUser()"/>',
-			   '<input type="button" value="タイトルに戻る" onclick="hideTmp();toTitle()"/>'
+			   '<br><br><input type="button" value="タイトルに戻る" onclick="hideTmp();toTitle()"/>'
 			].join("&nbsp;&nbsp;");
 		document.getElementById("tmp").innerHTML=tm_p;
 		document.getElementById("tmp").style.display="block";
