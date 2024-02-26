@@ -1,0 +1,58 @@
+﻿<link rel="stylesheet" href="ie-9.css" type="text/css" />
+<link rel="stylesheet" href="css.css" type="text/css" />
+
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+var datArr={"rd":["T","A","C","K"],"bl":[],"dish":["S"]};
+function pointed(){return'rd'}
+
+
+function setStack(limit)//スタックをdatArrの通りにする
+{
+	var i,j="";
+	var tmp=""
+	var lg="";//ログ用
+	for(i in datArr)
+	{
+		if( (limit!=null) && (limit!=i) )continue;
+		for(j in datArr[i])
+		{
+			 tmp+='<div class="koo" id="'+i+'_'+j+'">'+datArr[i][j]+'</div>';
+		}
+		document.getElementById(i).innerHTML=tmp;
+		tmp="";
+	}
+}
+
+function POP()
+{
+	;(function($){$(function(){
+		document.getElementById("rd_0").style.visibility="hidden";
+		document.getElementById("chaos").innerHTML+=
+			'<div class="koo" id="mino" style="position:absolute;width:108px;left:55px;top:80px">'+
+			datArr[pointed()][0]+
+			'</div>';
+		datArr.dish[0]=datArr[pointed()].shift();
+		setStack(pointed());
+		
+		//$.when(function(){
+			$("#mino").animate({top:'55px'}).animate({left:'+=300px'}).animate({top:'165px'});
+	//	}).done(function(){
+			//setStack();
+	//	})
+		
+		
+	})})(jQuery);
+	
+}
+
+</script>
+<body onload="setStack()">
+<div class="waku" id="chaos">
+	<div class="stac st1" id="rd"></div>
+	<div class="stac st2" id="bl"></div>
+	<div class="dish" id="dish"></div>
+	<div class="arrow"></div>
+</div>
+<input type="button" onclick="POP();" value="pop"/>
+</body>

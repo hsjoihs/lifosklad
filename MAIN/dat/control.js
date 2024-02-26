@@ -22,8 +22,28 @@ function cmd(v)//コマンド受け取る
 		else
 		{
 			unlock(true);//封じ
-			datArr.dish[0]=datArr[pointed()].shift();//左のスタックから一つ抜く
-			setStack();//スタックから消して皿に出す
+			;(function($){$(function(){
+				
+				if(getAnimate())
+				{
+					document.getElementById(pointed()+"_0").style.visibility="hidden";
+					document.getElementById("chaos").innerHTML+=
+					'<div class="koo" id="mino" style="position:absolute;width:100px;left:55px;top:80px">'+
+					datArr[pointed()][0]+
+					'</div>';
+					datArr.dish[0]=datArr[pointed()].shift();
+					setStack(pointed());
+					$("#mino").animate({top:'45px'},500).animate({left:'+=300px'},500).animate({top:'165px'},500);
+					setTimeout(function(){setStack();$('#mino').remove();},1600);		
+				}
+				else
+				{
+					datArr.dish[0]=datArr[pointed()].shift();
+					setStack();
+				}
+					
+			})})(jQuery);
+					
 			unlock(false);//封じ
 			return 1;
 		}
@@ -33,8 +53,25 @@ function cmd(v)//コマンド受け取る
 		if(datArr.dish.length==0){alert("移動できません");return 0;}
 		if(datArr[pointed()].length==5){alert("移動できません");return 0;}
 		unlock(true);//封じ
-		datArr[pointed()].unshift(datArr.dish[0]);//皿から貰う
-		setStack();
+		;(function($){$(function(){
+			if(getAnimate())
+			{
+				document.getElementById("chaos").innerHTML+=
+					'<div class="koo" id="mino" style="position:absolute;width:100px;left:355px;top:165px">'+
+					datArr.dish[0]+
+					'</div>';
+				datArr[pointed()].unshift(datArr.dish[0]);//皿から貰う
+				setStack("dish");
+				
+				$("#mino").animate({top:'45px'},500).animate({left:'-=300px'},500).animate({top:'65px'},250);
+				setTimeout(function(){setStack();$('#mino').remove();},1350);		
+			}
+			else
+			{
+				datArr[pointed()].unshift(datArr.dish[0]);//皿から貰う
+				setStack();
+			}
+		})})(jQuery);
 		unlock(false);//封じ
 		return 1;
 	}
@@ -43,8 +80,26 @@ function cmd(v)//コマンド受け取る
 		if(datArr[pointed()].length==0){alert("移動できません");return 0;}
 		if(datArr[red_is_left?"bl":"rd"].length==5){alert("移動できません");return 0;}
 		unlock(true);//封じ
-		datArr[red_is_left?"bl":"rd"].unshift(datArr[pointed()].shift());//一つ動かす
-		setStack();
+		;(function($){$(function(){
+			if(getAnimate())
+			{
+				document.getElementById(pointed()+"_0").style.visibility="hidden";
+				document.getElementById("chaos").innerHTML+=
+					'<div class="koo" id="mino" style="position:absolute;width:100px;left:55px;top:80px">'+
+					datArr[pointed()][0]+
+					'</div>';
+				datArr[red_is_left?"bl":"rd"].unshift(datArr[pointed()].shift());//一つ動かす
+				setStack(pointed());
+				
+				$("#mino").animate({top:'45px'},500).animate({left:'+=150px'},500).animate({top:'65px'},500);
+				setTimeout(function(){setStack();$('#mino').remove();},1350);	
+			}
+			else
+			{
+				datArr[red_is_left?"bl":"rd"].unshift(datArr[pointed()].shift());//一つ動かす
+				setStack();
+			}
+		})})(jQuery);
 		unlock(false);//封じ
 		return 1;
 	}

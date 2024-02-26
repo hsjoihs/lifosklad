@@ -3,6 +3,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title></title>
 <link rel="stylesheet" href="dat/css.css" type="text/css" />
+<script type="text/javascript" src="dat/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="path.js"></script>
 <script type="text/javascript" src="dat/file.js"></script>
 <script type="text/javascript" src="dat/main.js"></script>
@@ -32,7 +33,7 @@ selection="yes"
 showintaskbar="yes"
 singleinstance="yes"
 sysmenu="no"
-version="1.10.0"
+version="2.3.7"
 windowstate="normal">
 </hta:application>
 </meta>
@@ -48,7 +49,7 @@ windowstate="normal">
 			<input name="uname2" style="width:150px;overflow:scroll;border:none;" value="tf" readonly />
 		</form>
 	</span></td>
-	<td style="width:1%"><span><strong style="background-color:#f00000;color:white;font-size:20px" onclick="if(confirm('閉じると遊んだ記録が消えてしまうが大丈夫か？'))window.close()">&nbsp;×&nbsp;</strong></span></td>
+	<td style="width:1%"><span><strong style="background-color:#f00000;color:white;font-size:20px" onclick="if(confirm('LIFOSKLADを終了して大丈夫か？'))window.close()">&nbsp;×&nbsp;</strong></span></td>
 </tr>
 </table>
 <div class="menu" id="menu"></div>
@@ -71,7 +72,7 @@ windowstate="normal">
 
 <a class="menubar" href="javascript:pauseMenu();">ステージ選択に戻る</a>
 <br><span id="currst"></span><br>
-<div class="waku">
+<div class="waku" id="chaos">
 	<div class="stac st1" id="rd"></div>
 	<div class="stac st2" id="bl"></div>
 	<div class="dish" id="dish"></div>

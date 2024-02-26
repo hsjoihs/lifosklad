@@ -6,7 +6,11 @@ var popKeeper=[];//popで消えたやつを保管する
 var currentStage=-1;//現在のステージ
 var playerid = function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40);//乱数でID。衝突が怖いので40桁。
 
-var GLOBAL = {userName:null};
+var GLOBAL = 
+{
+	userName:null,
+	animate:true
+};
 
 function setUserName(val)
 {
@@ -24,6 +28,9 @@ function setUserName(val)
 	}
 }
 function getUserName(){return GLOBAL.userName;}
+function animate(){GLOBAL.animate=true;}
+function noAnimate(){GLOBAL.animate=false;}
+function getAnimate(){return GLOBAL.animate;}
 
 
 function init()//初期処理
@@ -37,15 +44,17 @@ function init()//初期処理
 	catch(E){}
 }
 
-function setStack()//スタックをdatArrの通りにする
+function setStack(limit)//スタックをdatArrの通りにする
 {
-	var i,j,tmp="";
+	var i,j="";
+	var tmp=""
 	var lg="";//ログ用
 	for(i in datArr)
 	{
+		if( (limit!=null) && (limit!=i) )continue;
 		for(j in datArr[i])
 		{
-			 tmp+='<div class="koo">'+datArr[i][j]+'</div>';
+			 tmp+='<div class="koo" id="'+i+'_'+j+'">'+datArr[i][j]+'</div>';
 		}
 		document.getElementById(i).innerHTML=tmp;
 		tmp="";
