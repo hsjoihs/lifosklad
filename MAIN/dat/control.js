@@ -1,6 +1,6 @@
 ﻿var colorButton={0:"#f0f0f0","undefined":"#f0f0f0",1:"#7fffd4",2:"#ffd700",3:"#ff00ff"};
 
-function unlock(t){var $=document.inp;$.pop.disabled=$.pus.disabled=$.lgt.disabled=$.mov.disabled=$.rel.disabled=$.rel.disabled=t}
+function unlock(t){var $=document.inp;$.pop.disabled=$.pus.disabled=$.lgt.disabled=$.mov.disabled=$.und.disabled=$.rel.disabled=t}
 function writeDown(dtt)
 {
 	var rTmp=dtt.length+"手目： ";
@@ -18,7 +18,7 @@ function cmd(v)//コマンド受け取る
 	{
 		popKeeper[popKeeper.length]=datArr.dish[0];//popKeeperに保管
 		if(datArr[pointed()].length==0)
-		{alert("移動できません");return 0;}
+		{alert("移動できません");return -1;}
 		else
 		{
 			unlock(true);//封じ
@@ -34,24 +34,26 @@ function cmd(v)//コマンド受け取る
 					datArr.dish[0]=datArr[pointed()].shift();
 					setStack(pointed());
 					$("#mino").animate({top:'45px'},500).animate({left:'+=300px'},500).animate({top:'165px'},500);
-					setTimeout(function(){setStack();$('#mino').remove();},1600);		
+					setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(0);},1600);		
 				}
 				else
 				{
 					datArr.dish[0]=datArr[pointed()].shift();
 					setStack();
+					unlock(false);//封じ
+					jigo(0);
 				}
 					
 			})})(jQuery);
-					
-			unlock(false);//封じ
-			return 1;
+			return 0;		
+			
+			
 		}
 	}
 	function PUSH()//皿からコピー
 	{
-		if(datArr.dish.length==0){alert("移動できません");return 0;}
-		if(datArr[pointed()].length==5){alert("移動できません");return 0;}
+		if(datArr.dish.length==0){alert("移動できません");return -1;}
+		if(datArr[pointed()].length==5){alert("移動できません");return -1;}
 		unlock(true);//封じ
 		;(function($){$(function(){
 			if(getAnimate())
@@ -64,16 +66,15 @@ function cmd(v)//コマンド受け取る
 				setStack("dish");
 				
 				$("#mino").animate({top:'45px'},500).animate({left:'-=300px'},500).animate({top:'65px'},250);
-				setTimeout(function(){setStack();$('#mino').remove();},1350);		
+				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(1);},1350);		
 			}
 			else
 			{
 				datArr[pointed()].unshift(datArr.dish[0]);//皿から貰う
-				setStack();
+				setStack();unlock(false);jigo(1);
 			}
 		})})(jQuery);
-		unlock(false);//封じ
-		return 1;
+		return 0;
 	}
 	function MOV()//一つ動かす
 	{
@@ -92,15 +93,15 @@ function cmd(v)//コマンド受け取る
 				setStack(pointed());
 				
 				$("#mino").animate({top:'45px'},500).animate({left:'+=150px'},500).animate({top:'65px'},500);
-				setTimeout(function(){setStack();$('#mino').remove();},1350);	
+				setTimeout(function(){setStack();$('#mino').remove();unlock(false);jigo(3);},1350);	
 			}
 			else
 			{
 				datArr[red_is_left?"bl":"rd"].unshift(datArr[pointed()].shift());//一つ動かす
 				setStack();
+				unlock(false);jigo(3);
 			}
 		})})(jQuery);
-		unlock(false);//封じ
 		return 1;
 	}
 	function recti()//入れ替え処理
@@ -122,7 +123,12 @@ function cmd(v)//コマンド受け取る
 	{
 		lastMove[lastMove.length]=mvnm;//動きを追加
 		var label;
-		if(datArr.rd.join("")=="STACK")//クリア条件
+		if(datArr.rd.join("")!="STACK")//クリア条件を満たしていないとき
+		{
+			document.inp.und.disabled=false;
+			writeDown(lastMove);
+		}
+		else
 		{
 			writeDown(lastMove);
 			alert(lastMove.length+"手でミッションクリア!!　＼(・∀・)／");
@@ -165,11 +171,7 @@ function cmd(v)//コマンド受け取る
 			lastMove=[];
 			self.focus();//フォーカスバグ解決
 		}
-		else//クリア条件を満たしていないとき
-		{
-			document.inp.und.disabled=false;
-			writeDown(lastMove);
-		}
+		
 	}
 	function showClearedStage()
 	{
@@ -219,10 +221,10 @@ function cmd(v)//コマンド受け取る
 	/*dup-bug debug end*/
 	switch(v)
 	{
-		case 0:if(POP())jigo(0);break;
-		case 1:if(PUSH())jigo(1);break;
+		case 0:POP();break;
+		case 1:PUSH();break;
 		case 2:recti();jigo(2);break;
-		case 3:if(MOV())jigo(3);break;
+		case 3:MOV();break;
 		case 4:undo();break;
 	}
 }
