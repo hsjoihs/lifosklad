@@ -65,9 +65,21 @@ function createStageMenu()//ステージ選択メニュー
 	"<a href='javascript:config();'>設定</a><br>"+
 	"<a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br>"+
 	"<br>"+
-	"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:logIn2(true,getUserName())'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
+	"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:changeUser()'>Load...</a>&nbsp;"+
+	"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:pseudoSave()'>Save...</a>";
 	mnu.innerHTML=tmp;
 
+}
+
+function pseudoSave(){
+	if(appendFile(filepath+"savedata/"+esc(getUserName())+".config.txt",""))
+	{
+		alert("保存しました。");
+	}
+	else
+	{
+		alert("保存できませんでした。");
+	}
 }
 function createStage(n)
 {
@@ -75,8 +87,8 @@ function createStage(n)
 	{
 		if(!(n in stageNowData))stageNowData[n]=stageOriginalData[n];
 		var tmpp=stageNowData[n].split("@");//データ構造は固定なのでまとめる
-		tmpp='{"rd":['+tmpp[0]+'],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']}';
-		/*'{"rd":["T","A","C","K"],"bl":[],"dish":["S"]}'というデータ構造*/
+		tmpp='{"rd":['+tmpp[0]+    '],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']}';
+		/*   '{"rd":["T","A","C","K"],"bl":[           ],"dish":["S"        ]}'というデータ構造*/
 			datArr=JSON.parse(tmpp);//書き換える
 			document.getElementById("rd").style.left=50+"px";//DOMを作っておかないと怒られる
 			document.getElementById("bl").style.left=200+"px";
@@ -113,6 +125,11 @@ function pauseMenu(noConf)//メニューに戻る　関数名がおかしいの�
 		document.getElementById('menu').style.display='block';
 		currentStage=-1;
 	}
+}
+
+function changeUser()//fixme
+{
+	logIn(); // FIXME: toTitle and "アカウント作成" must be deleted
 }
 
 function logIn()

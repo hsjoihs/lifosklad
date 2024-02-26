@@ -185,7 +185,7 @@ function cmd(v)//コマンド受け取る
 				makeFolder(filepath+"savedata/"+esc(getUserName())) &&
 				saveFile(
 				filepath+"savedata/"+esc(getUserName())+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
-				'{"player-id":"'+playerid+'","hand(s)":"'+lastMove.join("")+'"}')
+				'{"player-id":"'+getPlayId()+'","hand(s)":"'+lastMove.join("")+'"}')
 			)
 			{				
 				alert("保存しました。");

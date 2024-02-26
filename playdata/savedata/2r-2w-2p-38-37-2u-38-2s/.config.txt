@@ -9,4 +9,11 @@ animate:false,
 animate:true,
 animate:false,
 animate:true,
-animate:false
+animate:false,
+animate:false,
+animate:false,
+animate:true,
+animate:true,
+animate:true,
+animate:true,
+animate:true

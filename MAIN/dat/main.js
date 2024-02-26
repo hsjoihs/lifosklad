@@ -4,12 +4,12 @@ var stageNowData=[];//ステージの現在のデータを一時保存用に確�
 var lastMove=[];//手を保管
 var popKeeper=[];//popで消えたやつを保管する
 var currentStage=-1;//現在のステージ
-var playerid = function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40);//乱数でID。衝突が怖いので40桁。
 
 var GLOBAL = 
 {
 	userName:null,
-	animate:true
+	animate:true,
+	playid:function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40)//乱数でID。衝突が怖いので40桁。
 };
 
 function applyConfig(json)
@@ -50,14 +50,14 @@ function noAnimate()
 }
 function getAnimate(){return GLOBAL.animate;}
 function setAnimate(t){if(t)animate();else noAnimate()}
-
+function getPlayId(){return GLOBAL.playid}
 function init()//初期処理
 {
 	resizeTo(1024,570);
 	explain(0);
 	animate();
 	var E;
-	saveFile(filepath+"playerdata/"+playerid+".txt",'{"started-playing-at":"'+timestamp(true)+'"}');
+	saveFile(filepath+"playerdata/"+getPlayId()+".txt",'{"started-playing-at":"'+timestamp(true)+'"}');
 }
 
 function setStack(limit)//スタックをdatArrの通りにする
@@ -79,10 +79,10 @@ function setStack(limit)//スタックをdatArrの通りにする
 
 function termin()
 {
-	var datt=openFile(filepath+"playerdata/"+playerid+".txt");
+	var datt=openFile(filepath+"playerdata/"+getPlayId()+".txt");
 	if(datt!==null)
 	{
-		deleteFile(filepath+"playerdata/"+playerid+".txt"); 
-		saveFile(filepath+"playerdata/!"+playerid+".txt",datt.replace("}","")+',"finished-playing-at":"'+timestamp(true)+'"}')
+		deleteFile(filepath+"playerdata/"+getPlayId()+".txt"); 
+		saveFile(filepath+"playerdata/!"+getPlayId()+".txt",datt.replace("}","")+',"finished-playing-at":"'+timestamp(true)+'"}')
 	}
 }

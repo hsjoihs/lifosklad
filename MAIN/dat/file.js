@@ -11,9 +11,7 @@
 function makeFolder(str)
 {
 	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	try{fso.CreateFolder(str);}catch(e)
-	{//already made
-	}
+	try{fso.CreateFolder(str);}catch(e){/*already made*/}
 	return true;
 }
 
