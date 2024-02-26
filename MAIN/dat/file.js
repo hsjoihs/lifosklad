@@ -26,6 +26,17 @@ function deleteFile(str)
 	catch(E){return null;}
 }
 
+function renameFolder(str,newS)
+{
+	var fso=new ActiveXObject("Scripting.FileSystemObject");
+	try
+	{
+		fso.MoveFolder(str,newS);
+		return true;
+	}
+	catch(e){alert(e.message);return null;}
+}
+
 function getDir(path)
 {
 	try
@@ -64,11 +75,11 @@ function appendFile(path,txt)
 }
 
 
-function dir(){
+function dir(noslash){
 	var ans = filepath+"savedata/";
 	if(getUserName()==null) // anonymous
 	{
-		return ans+getPlayId()+"/";
+		return ans+getPlayId()+(noslash?"":"/");
 	}
 	else
 	{
@@ -78,7 +89,7 @@ function dir(){
 		{
 			tmp[tmp.length]=txt.charCodeAt(i).toString(36);
 		}
-		return ans+tmp.join("-")+"/";
+		return ans+tmp.join("-")+(noslash?"":"/");
 	}
 }
 

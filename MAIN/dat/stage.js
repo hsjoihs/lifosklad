@@ -78,6 +78,11 @@ function anonymousInit()
 
 
 function pseudoSave(){
+	if(getUserName()==null)
+	{
+		newUser();
+		return;
+	}
 	if(appendFile(dir()+".config.txt",""))
 	{
 		alert("保存しました。");
@@ -146,35 +151,55 @@ function changeUser()//fixme:repetition
 	"</form>";
 }
 
-
-
-function logIn()
+function newUser()
 {
 	var $ = document.getElementById("login");
 	$.style.display="block";
-	$.innerHTML="ログイン/アカウント作成<br>"+
+	$.innerHTML="アカウント作成<br>"+
 	"<form name='log_in'>"+
 		"ユーザー名: <input name='username' onsubmit='return false;'><br>"+
 		"<input name='dummy' onsubmit='return false;' style='display:none;'>"+ // at least 2 textboxes must be present for `onsubmit' to take place
-		"<input type='button' value='OK' onclick='logIn2(false,document.log_in.username.value)'> "+
-		"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";toTitle();' />"+
+		"<input type='button' value='OK' onclick='logIn2(true,document.log_in.username.value)'> "+
+		"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";' />"+
 	"</form><br><br>"+
-	"次に来た時に同じ名前でログインすると続きから遊べるよ。";
+	"次に来た時に同じ名前でログインすると続きから遊べるよ。";	
 }
 
-function logIn2(warn,name)
+function logIn2(makenew,name)
 {
+	var origDir=dir(true);
 	setUserName(name);
 	document.getElementById("login").style.display="none";
 	if(!getDir(dir()))
 	{
-		if(warn){alert("ロードするデータがありません");return;}
-		document.getElementById("loading").style.display="none";
-		makeFolder(dir());
-		saveFile(dir()+".config.txt","animate:true");
-		return;
+		if(!makenew)
+		{
+			alert("ロードするデータがありません");
+			return;
+		}
+		else
+		{
+			document.getElementById("loading").style.display="none";
+			saveFile(dir()+".config.txt","animate:true");
+			return;
+		}
 	}
-	load(true);load();
+	else
+	{
+		if(!makenew)
+		{
+			load(true);load();
+			return;
+		}
+		else
+		{
+			setUserName(null);
+			document.getElementById("login").style.display="block";
+			alert("そのユーザー名は既に使われています");
+			return;
+		}
+	}
+	
 }
 
 function logOut()
