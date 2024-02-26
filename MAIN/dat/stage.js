@@ -26,7 +26,7 @@ function stageNum(dat)
 	{
 		return stageRawData[dat].split(":")[2]
 	}
-	else return"Level "+(dat+1);
+	else return "Level "+(dat+1);
 }
 function credit()//スタッフクレジット
 {
@@ -59,6 +59,9 @@ function createStageMenu()//ステージ選択メニュー
 	}
 	tmp+=
 	"<br><br><br><br><br><br>"+
+	"<span id='shownew' style='display:none'>"+
+	 "<a style='background-color:"+colorButton[0]+";' href='javascript:showNew()'>裏ステージで遊ぶ</a><br>"+
+	"</span>"+
 	"<a href='javascript:toTitle();'>タイトルに戻る</a><br>"+
 	"<a href='javascript:toTutor();'>説明に戻る</a><br>"+
 	"<a href='javascript:credit();'>スタッフクレジット</a><br>"+

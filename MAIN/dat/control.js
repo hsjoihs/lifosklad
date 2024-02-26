@@ -197,8 +197,7 @@ function cmd(v)//コマンド受け取る
 			
 			if(currentStage==(stageRawData.length-1)&&!isBossCleared)//ボスをクリアしたら
 			{
-				alert("おめでとう！最後のステージをクリアした！　＼(・∀・)／\n隠しステージが遊べるようになったよ！\n");
-				alert("一度説明に戻って、ゲームを始めると遊べるようになるよ！\n隠しステージには金クリアヒントがないから、自力で頑張ってね！");
+				bossCleared();
 			}
 			showClearedStage();
 			pauseMenu(true);
