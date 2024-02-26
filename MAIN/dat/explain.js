@@ -133,16 +133,34 @@ function toTitle()//①タイトル
 }
 function do2()//②新規ユーザ登録してゲームを始めますか？
 {
-	
-	if(confirm("新規ユーザ登録してゲームを始めますか？\n※ユーザ登録をすると、ゲームのプレイデータを保存でき、一度ゲームを閉じてもまた続きから遊べます。\n※既にユーザ登録している方は、Noをクリックして下さい。"))
+	if(GLOBAL.userName==null)
 	{
-		do3();
+		var tm_p = [
+			"",
+			"新規ユーザ登録してゲームを始めますか？",
+			"",
+			"※ユーザ登録をすると、ゲームのプレイデータを保存でき、",
+			"<span style='color:white'>※</span>一度ゲームを閉じてもまた続きから遊べます。",
+			"※既にユーザ登録している方は、Noをクリックして下さい。",
+			""
+			].join("<br>");
+		tm_p+='<br>';
+		tm_p+=['<input type="button" value="Yes"    onclick="hideTmp();do3()"/>',
+			   '<input type="button" value="No"     onclick="hideTmp();do4(null)"/>',
+			   '<input type="button" value="タイトルに戻る" onclick="hideTmp();toTitle()"/>'
+			].join("&nbsp;&nbsp;");
+		document.getElementById("tmp").innerHTML=tm_p;
+		document.getElementById("tmp").style.display="block";
 	}
 	else
 	{
-		do4();
+		ask();
 	}
-	
+}
+
+function hideTmp()
+{
+	document.getElementById("tmp").style.display="none";
 }
 
 function do5()//⑤説明

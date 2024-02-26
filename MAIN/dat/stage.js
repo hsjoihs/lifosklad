@@ -89,7 +89,7 @@ function pseudoSave(){
 	}
 	if(appendFile(dir()+".config.txt",""))
 	{
-		alert("保存しました。多分。");
+		alert("保存しました。");
 	}
 	else
 	{
@@ -169,26 +169,6 @@ function do3()//③ユーザ登録
 	"次に来た時に同じ名前でログインすると続きから遊べるよ。";	
 }
 
-function do4(txt)//④質問
-{
-	logIn2(true,txt);
-	if(!GLOBAL.skipExplain&&confirm("ゲームのルール説明を見ますか？"))
-	{
-		do5();
-	}
-	else
-	{
-		do6();
-	}
-}
-
-
-
-function do6()//⑥ステージセレクト
-{
-	makStag();
-}
-
 function logIn2(makenew,name)
 {
 	var origDir=dir(true);
@@ -225,6 +205,64 @@ function logIn2(makenew,name)
 	}
 	
 }
+
+
+function ask()
+{
+	if(!GLOBAL.skipExplain&&confirm("ゲームのルール説明を見ますか？"))
+	{
+		do5();
+	}
+	else
+	{
+		do6();
+	}
+}
+
+function do4(txt)//④質問
+{
+
+	// txt can be null
+	if(txt==null)
+	{
+		setUserName(null);ask();return;
+	}
+	
+	var origDir=dir(true);
+	setUserName(txt);
+	document.getElementById("login").style.display="none";
+	if(!getDir(dir()))
+	{
+		document.getElementById("loading").style.display="none";
+		var a=renameDir(origDir,dir(true));
+		if(!a)
+		{
+			document.getElementById("loading").style.display="none";
+			saveFile(dir()+".config.txt","animate:true");
+		}
+		ask();
+		return;
+	}
+	else
+	{
+		setUserName(null);
+		document.getElementById("login").style.display="block";
+		alert("そのユーザー名は既に使われています");
+		return;
+	}
+	
+	
+	// logIn2(true,txt); -- NO; we have to make another user
+	ask();
+}
+
+
+
+function do6()//⑥ステージセレクト
+{
+	makStag();
+}
+
 
 function logOut()
 {

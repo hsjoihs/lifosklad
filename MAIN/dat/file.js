@@ -15,6 +15,13 @@ function makeFolder(str)
 	return true;
 }
 
+function renameDir(src,dst)
+{
+	var fso=new ActiveXObject("Scripting.FileSystemObject");;
+	try{fso.MoveFolder(src,dst);}catch(e){return false};
+	return true;
+}
+
 function deleteFile(str)
 {
 	var fso=new ActiveXObject("Scripting.FileSystemObject");
