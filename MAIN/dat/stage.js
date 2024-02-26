@@ -46,7 +46,8 @@ function createStageMenu()//ステージ選択メニュー
 		if(!(isHidden[i]-0)||isBossCleared)tmp+='<a id="sta'+i+'" class="button" style="background-color:'+colorButton[stageCleared[i]+""]+
 		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
 	}
-	tmp+="<br><br><br><br><br><br><a href='javascript:toTitle();'>タイトルに戻る</a><br><a href='javascript:toTutor();'>説明に戻る</a><br><a href='javascript:credit();'>スタッフクレジット</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:load()'>Load...</a>";
+	tmp+="<br><br><br><br><br><br><a href='javascript:toTitle();'>タイトルに戻る</a><br><a href='javascript:toTutor();'>説明に戻る</a><br>"+
+	"<a href='javascript:credit();'>スタッフクレジット</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:load()'>Load...</a>&nbsp;<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:save()'>Save...</a>";
 	mnu.innerHTML=tmp;
 
 }
