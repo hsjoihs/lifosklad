@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title></title>
+<link rel="stylesheet" href="dat/css.css" type="text/css" />
+<script type="text/javascript" src="path.js"></script>
+<script type="text/javascript" src="dat/file.js"></script>
+<script type="text/javascript" src="dat/main.js"></script>
+<script type="text/javascript" src="dat/time.js"></script>
+<script type="text/javascript" src="dat/control.js"></script>
+<script type="text/javascript" src="dat/explain2.js"></script>
+<script type="text/javascript" src="../stagedat/stagedat.js"></script>
+<script type="text/javascript" src="../stagedat/extend.js"></script>
+<script type="text/javascript" src="dat/stage2.js"></script>
+<script type="text/javascript" src="dat/keylock.js"></script>
+
+
+<hta:application
+applicationName="lifosklad"
+border="none"
+borderstyle="ridge"
+caption="no"
+contextmenu="no"
+icon="dat/icon22.ico"
+innerborder="yes"
+maximizebutton="no"
+minimizebutton="no"
+navigable="yes"
+scroll="no"
+selection="yes"
+showintaskbar="yes"
+singleinstance="yes"
+sysmenu="no"
+version="1.10.0"
+windowstate="normal">
+</hta:application>
+</meta>
+</head>
+<body bgcolor="white" oncontextmenu="return false;" onload="init();" onunload="termin();" ondblclick=""><table><tr><td style="width:10%">
+<span style="font-size:30px;" class="koo" onclick="alert('&copy;2013')">&nbsp;LIFOSKLAD&nbsp;</span></td><td style="width:*">&nbsp;</td><td style="width:1%"><span><strong style="background-color:#f00000;color:white;font-size:20px" onclick="if(confirm('閉じると遊んだ記録が消えてしまうが大丈夫か？'))window.close()">&nbsp;×&nbsp;</strong></span></td></tr></table>
+<div class="menu" id="menu"></div>
+
+<a class="menubar" href="javascript:pauseMenu();">ステージ選択に戻る</a>
+<br><span id="currst"></span><br>
+<div class="waku">
+	<div class="stac st1" id="rd"></div>
+	<div class="stac st2" id="bl"></div>
+	<div class="dish" id="dish"></div>
+	<div class="arrow"></div>
+</div>
+<form name="inp">
+	<input type="button" name="pop" onclick="cmd(0)" value="皿へ移動"/>
+	<input type="button" name="pus" onclick="cmd(1)" value="皿からコピー"/>
+	<input type="button" name="lgt" onclick="cmd(2)" value="スタックを入れ替える"/>
+	<input type="button" name="mov" onclick="cmd(3)" value="もう一つのスタックに移動"/>
+	<input type="button" name="und" onclick="cmd(4)" value="一手戻す"/><br><br>
+	<input type="button" name="rel" onclick="restart()" value="ステージをやり直す"/>
+</form>
+<span id="log"></span><br>
+<span id="mvm"></span><br><br>
+<span id="comm"></span><br>
+<span id="goldhint"></span>
+
+</body>
+</html>
