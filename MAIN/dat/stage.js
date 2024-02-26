@@ -48,7 +48,7 @@ function createStageMenu()//ステージ選択メニュー
 		';" href="javascript:createStage('+i+')">'+stageNum(i)+'</a> '
 	}
 	tmp+="<br><br><br><br><br><br><a href='javascript:toTitle();'>タイトルに戻る</a><br><a href='javascript:toTutor();'>説明に戻る</a><br>"+
-	"<a href='javascript:credit();'>スタッフクレジット</a><br><a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:load()'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
+	"<a href='javascript:credit();'>スタッフクレジット</a><br><a href='javascript:logOut();'>ログアウトしてタイトルに戻る</a><br><br><a class='button' style='background-color:"+colorButton[0]+";' href='javascript:logIn2(true,userName)'>Load...</a>&nbsp;"+"<a class='button' style='background-color:"+colorButton[0]+";' href='javascript:alert(\"保存されました。\")'>Save...</a>";
 	mnu.innerHTML=tmp;
 
 }
@@ -103,21 +103,22 @@ function logIn()
 	var $ = document.getElementById("login");
 	$.style.display="block";
 	$.innerHTML="ログイン/アカウント作成<br>"+"<form name='log_in'>ユーザー名: <input name='username'><br>"+
-	"<input type='button' value='OK' onclick='logIn2(document.log_in.username.value)'> "+
+	"<input type='button' value='OK' onclick='logIn2(false,document.log_in.username.value)'> "+
 	"<input type='button' value='Cancel' onclick='document.getElementById(\"login\").style.display=\"none\";toTitle();'></form><br><br>"+
 	"次に来た時に同じ名前でログインすると続きから遊べるよ。";
 }
 
-function logIn2(name)
+function logIn2(warn,name)
 {
 	userName = name;
 	document.getElementById("login").style.display="none";
-	try{load(true);load();}catch(E){alert(e);document.getElementById("loading").style.display="none";}
+	try{load(true);load();}catch(E){document.getElementById("loading").style.display="none";if(warn)alert("ロードするデータがありません")}
 }
 
 function logOut()
 {
 	userName = null;
+	stageCleared=new Array(stageRawData.length);
 	toTitle();
 }
 
