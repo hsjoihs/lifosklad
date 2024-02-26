@@ -1,7 +1,8 @@
 ﻿function load()
 {
 	document.getElementById("loadfile").style.display="block";
-	var tmp="<p style='overflow:scroll;height:400px'>";
+	var tmp="ステージ一覧:<br>";
+	tmp+="<p style='overflow:scroll;height:400px'>";
 	var files = getDir(filepath+"savedata/");
 	for(var i=0,n=files.length;i<n;i++)
 	{
@@ -20,7 +21,7 @@
 	}
 	tmp+="</p>";
 	
-	tmp+="<br><a class='button' style='background-color:"+colorButton[0]+"' href='javascript:toMenu()'>戻る</a><br>";
+	tmp+="<a class='button' style='background-color:"+colorButton[0]+"' href='javascript:toMenu()'>戻る</a><br>";
 	document.getElementById("loadfile").innerHTML=tmp;
 }
 
@@ -94,6 +95,13 @@ function autoNext(hands)
 	hands+="";
 	autoplay1(hands.charAt(autoIndex));
 	autoIndex++;
+	if(autoIndex>=hands.length)
+	{
+		alert("ミッションクリア!!　＼(・∀・)／");
+		document.getElementById("loadedfile").style.display="none";
+		document.getElementById("loadedfile").innerHTML="";
+		load();
+	}
 }
 
 
