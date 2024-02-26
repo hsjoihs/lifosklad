@@ -19,7 +19,7 @@ function saveFile(path,text){
 function makeFolder(str)
 {
 	var fso=new ActiveXObject("Scripting.FileSystemObject");
-	fso.CreateFolder(str);
+	try{fso.CreateFolder(str);}catch(e){}
 	return true;
 }
 
@@ -47,4 +47,27 @@ function getDir(path)
 		files.moveNext();
 	}
 	return ans;	
+}
+
+
+
+
+
+function esc(txt){
+	var tmp=[];
+	for(var i=0,n=txt.length;i<n;i++)
+	{
+		tmp[tmp.length]=txt.charCodeAt(i).toString(36)
+	}
+	return tmp.join("-")+"/"
+}
+
+function dec(txt){
+	var tmp=txt.split("-");
+	var ans="";
+	for(var i=0,n=tmp.length;i<n;i++)
+	{
+		ans+=String.fromCharCode(parseInt(tmp[i],36));
+	}
+	return ans;
 }

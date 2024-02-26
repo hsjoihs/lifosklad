@@ -1,7 +1,7 @@
 ﻿function load()
 {
 	document.getElementById("loading").style.display="block";
-	var files = getDir(filepath+"savedata/");
+	var files = getDir(filepath+"savedata/"+esc(userName));
 	
 	for(var i=0,n=files.length;i<n;i++)
 	{
@@ -19,7 +19,7 @@
 			return '{"rd":['+tmpp[0]+'],"bl":['+tmpp[1]+'],"dish":['+tmpp[2]+']}'; 
 			/*'{"rd":["T","A","C","K"],"bl":[],"dish":["S"]}'というデータ構造*/
 		})(stage_num);
-		var contents=openFile(filepath+"savedata/"+pth)
+		var contents=openFile(filepath+"savedata/"+esc(userName)+pth)
 		var obj=JSON.parse(contents);
 		var id=obj["player-id"];
 		var hands=obj["hand(s)"];

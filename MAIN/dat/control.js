@@ -90,7 +90,8 @@ function cmd(v)//コマンド受け取る
 			var E;
 			try
 			{
-				saveFile(filepath+"savedata/"+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
+				makeFolder(filepath+"savedata/"+esc(userName));
+				saveFile(filepath+"savedata/"+esc(userName)+label+to2Dig(currentStage+1)+"("+stageRawData[currentStage].split(":")[0]+")"+"-"+timestamp()+".txt",
 				'{"player-id":"'+playerid+'","hand(s)":"'+lastMove.join("")+'"}');
 				alert("保存しました。");
 			}

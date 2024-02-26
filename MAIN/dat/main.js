@@ -4,7 +4,8 @@ var stageNowData=[];//ステージの現在のデータを一時保存用に確�
 var lastMove=[];//手を保管
 var popKeeper=[];//popで消えたやつを保管する
 var currentStage=-1;//現在のステージ
-var playerid=function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40);//乱数でID。衝突が怖いので40桁。
+var playerid = function(n){var TMP="";for(var i=0;i<n;i++){TMP+=Math.floor(Math.random()*10)}return TMP}(40);//乱数でID。衝突が怖いので40桁。
+var userName = "CHAtsFtD"
 
 function init()//初期処理
 {
